@@ -7,11 +7,12 @@ let lista = [];
 
 //FUNCIONES
 function guardar(e) {
-    lista.push(e);
+    lista.unshift(e);
 }
 
 function listar() {
     if (lista) {
+        Listado.innerHTML = "";
         lista.forEach(tarea => {
             let item = document.createElement("div");
             item.className = "tarea";
@@ -70,6 +71,8 @@ Formulario.addEventListener('submit', e => {
     }
 
     guardar(tarea);
+
+    data.reset();
     listar();
 
 })
