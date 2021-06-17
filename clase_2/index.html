@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angenda Diaria</title>
+
+    <!--ICONOS DE MATERIALIZE-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--ARCHIVO DE ESTILO CSS-->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <header>
+        <h1>Agenda Diaria</h1>
+    </header>
+
+    <div id="entrada">
+        <form action="" method="post" id="formulario">
+            <div>
+                <label for="importante">Importante</label>
+                <input type="checkbox" name="importante" id="importante">
+            </div>
+            <input type="text" name="tarea" placeholder="Tarea" id="titulo" required>
+            <textarea name="descripcion" cols="30" rows="6" placeholder="Descripción" id="descripcion" required></textarea>
+
+            <div id="tiempo">
+                <span>Tiempo a dedicar en minutos:</span>
+                <div id="slider">
+                    <input type="radio" name="tiempo" id="15" value="15" required>
+                    <label for="15">15</label>
+                    <input type="radio" name="tiempo" id="30" value="30" required>
+                    <label for="30">30</label>
+                    <input type="radio" name="tiempo" id="45" value="45" required>
+                    <label for="45">45</label>
+                    <input type="radio" name="tiempo" id="60" value="60" required>
+                    <label for="60">60+</label>
+                </div>
+            </div>
+
+            <input type="submit" value="Guardar">
+
+        </form>
+    </div>
+
+    <div id="lista">
+        
+        <div class="tarea">
+            <div class="tarea-cabecera">
+                <p class="tarea-titulo"> Pasear el perro</p>
+                <p class="tarea-tiempo"> 15m</p>
+                <span class="material-icons tarea-importante"> priority_high </span>
+            </div>
+            <div class="tarea-cuerpo oculta">
+                <p class="tarea-descripcion">
+                    Sacarlo afuera, sin olvidarse el collar.
+                </p>
+                <div class="tarea-botones">
+                    <span id="hecho" class="material-icons"> check </span>
+                    <span id="editar" class="material-icons"> edit </span>
+                    <span id="borrar" class="material-icons"> delete </span>
+                </div>
+            </div>
+            <span class="material-icons tarea-expandir" onclick="expandir(this)">
+                expand_more
+            </span>
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
