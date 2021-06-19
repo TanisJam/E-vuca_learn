@@ -27,6 +27,7 @@ header {
     padding: 0.5rem;
     margin-bottom: .3rem;
 }
+
 #slider {
     display: flex;
     flex-direction: row;
@@ -35,7 +36,7 @@ header {
 }
 
 #slider input {
-    margin-right: -1.5rem;
+    margin-right: -2.5rem;
 }
 
 textarea {
@@ -75,6 +76,7 @@ textarea {
     border-radius: 10%;
     padding: .5rem;
 }
+
 .tarea-importante {
     font-size: larger;
     background-color: tomato;
@@ -85,9 +87,11 @@ textarea {
 .tarea-cuerpo {
     width: 100%;
     background-color: beige;
+    transition: .5s;
 }
 
 .tarea-descripcion {
+    text-align: center;
     padding: .5rem;
     margin: .5rem auto 1rem auto;
 }
@@ -120,6 +124,26 @@ textarea {
     border-radius: 10%;
 }
 
+.boton {
+    user-select: none;
+    transition: .1s;
+}
+
+.boton:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
 .oculta {
     display: none;
+}
+
+.visible {
+    height: 7.5rem;
+    overflow: hidden;
+}
+
+.no-visible {
+    height: 0;
+    overflow: hidden;
 }
