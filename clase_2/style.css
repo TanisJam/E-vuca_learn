@@ -2,20 +2,27 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Mulish', sans-serif;
+}
+
+body {
+    background-color: #ADA9BB;
 }
 
 header {
-    background-color: azure;
+    background-color: #484554;
+    color: #FEFEFE;
     text-align: center;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 #entrada {
-    background-color: bisque;
+    background-color: #FFF;
     max-width: 30rem;
-    margin: .5rem auto 1rem auto;
+    margin: 0rem auto 1rem auto;
     padding: 1rem;
+    border-radius: 0 0 3% 3%;
 }
 
 #entrada form {
@@ -43,6 +50,25 @@ textarea {
     resize: vertical;
 }
 
+#guardar {
+    color: #fff;
+    background-color: #5258E6;
+    border: none;
+    border-radius: 5px;
+    transition: .1s;
+    box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+#guardar:hover {
+    background-color: #494dd8;
+    cursor: pointer;
+}
+
+#guardar:active {
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    transform: scale(.99);
+}
+
 #lista {
     display: flex;
     flex-direction: column;
@@ -52,12 +78,14 @@ textarea {
 }
 
 .tarea {
+    border: 1px outset #D5C5FF;
     margin: .5rem;
     padding: .5rem;
-    background-color: wheat;
+    background-color: #BAADFF;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 10px;
 }
 
 .tarea-cabecera {
@@ -66,72 +94,96 @@ textarea {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
+    padding-bottom: .2rem;
 }
 
 .tarea-tiempo {
     font-weight: 800;
-    background-color: paleturquoise;
+    background-color: #D9F3F5;
     border-radius: 10%;
     padding: .5rem;
 }
 
 .tarea-importante {
     font-size: larger;
-    background-color: tomato;
-    border-radius: 10%;
+    color: #D8002B;
     padding: .5rem;
+    transition: .2s;
+}
+
+.tarea-importante:hover {
+    transform: scale(1.5);
+    user-select: none;
+    color: #ff1f1f;
 }
 
 .tarea-cuerpo {
+    border: 2px ridge #6363f5d5;
+    border-radius: 5px;
     width: 100%;
-    background-color: beige;
+    background-color: #F4ECFF;
     transition: .5s;
 }
 
 .tarea-descripcion {
+    height: 7.8rem;
+    width: 100%;
     text-align: center;
     padding: .5rem;
-    margin: .5rem auto 1rem auto;
+    margin: .5rem auto 0.3rem auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: center;
 }
 
 .tarea-botones {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    padding: 1rem;
+    padding: .2rem 1rem .1rem 1rem;
+}
+
+#hecho, #editar, #borrar {
+    color: #fff;
+    font-size: 2rem;
 }
 
 #hecho {
-    font-size: 2rem;
-    background-color: green;
-    box-shadow: 0 0 0 4px green;
-    border-radius: 10%;
+    background-color: #009E74;
+    box-shadow: 0 0 0 4px #009E74, 4px 3px 5px 1px rgba(0, 0, 0, 0.75);
+}
+#hecho:active {
+    box-shadow: 0 0 0 4px #009E74, 3px 2px 4px 1px rgba(0, 0, 0, 0.75);
+    transform: scale(.99);
 }
 
 #editar {
-    font-size: 2rem;
-    background-color: steelblue;
-    box-shadow: 0 0 0 4px steelblue;
-    border-radius: 10%;
+    background-color: #5258E6;
+    box-shadow: 0 0 0 4px #5258E6, 4px 3px 5px 1px rgba(0, 0, 0, 0.75);
+}
+#editar:active {
+    box-shadow: 0 0 0 4px #5258E6, 3px 2px 4px 1px rgba(0, 0, 0, 0.75);
+    transform: scale(.99);
 }
 
 #borrar {
-    font-size: 2rem;
-    background-color: orangered;
-    box-shadow: 0 0 0 4px orangered;
-    border-radius: 10%;
+    background-color: #EA001F;
+    box-shadow: 0 0 0 4px #EA001F, 4px 3px 5px 1px rgba(0, 0, 0, 0.75);
+}
+#borrar:active {
+    box-shadow: 0 0 0 4px #EA001F, 3px 2px 4px 1px rgba(0, 0, 0, 0.75);
+    transform: scale(.99);
 }
 
 .boton {
     user-select: none;
     transition: .1s;
+    border-radius: 50%;
 }
 
 .boton:hover {
     cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(1.04);
 }
 
 .oculta {
@@ -139,7 +191,7 @@ textarea {
 }
 
 .visible {
-    height: 7.5rem;
+    height: 11.5rem;
     overflow: hidden;
 }
 

@@ -23,7 +23,6 @@ function listar() {
         tareas.forEach(tarea => {
             let item = document.createElement("div");
             item.className = "tarea";
-
             item.innerHTML = `
             <div class="tarea-cabecera">
                 <p class="tarea-titulo">${tarea.titulo}</p>
@@ -38,7 +37,7 @@ function listar() {
                     <span id="borrar" class="material-icons boton" onclick="borrar(this)"> delete </span>
                 </div>
             </div>
-            <span class="material-icons tarea-expandir boton" onclick="expandir(this)">expand_more</span>`;
+            <span class="material-icons tarea-expandir" onclick="expandir(this)">expand_more</span>`;
             Listado.appendChild(item);
         })
     }
@@ -53,8 +52,8 @@ function borrar(e) {
 
     let tareas = JSON.parse(localStorage.getItem('tareas'));
 
-    let posicion = tareas.find((tarea, i) =>{
-        if (tarea.titulo === tituloTarea){
+    let posicion = tareas.find((tarea, i) => {
+        if (tarea.titulo === tituloTarea) {
             return i;
         }
     })

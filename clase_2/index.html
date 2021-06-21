@@ -10,6 +10,10 @@
     <!--ICONOS DE MATERIALIZE-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!--FUENTES DE GOOGLE-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
+
     <!--ARCHIVO DE ESTILO CSS-->
     <link rel="stylesheet" href="style.css">
 
@@ -26,8 +30,9 @@
                 <label for="importante">Importante</label>
                 <input type="checkbox" name="importante" id="importante">
             </div>
-            <input type="text" name="tarea" placeholder="Tarea" id="titulo" required>
-            <textarea name="descripcion" cols="30" rows="6" placeholder="Descripción" id="descripcion" required></textarea>
+            <input type="text" name="tarea" placeholder="Tarea" id="titulo" maxlength="32" required>
+            <textarea name="descripcion" cols="30" rows="6" placeholder="Descripción" id="descripcion"
+            maxlength="512" required></textarea>
 
             <div id="tiempo">
                 <span>Tiempo a dedicar en minutos:</span>
@@ -43,14 +48,14 @@
                 </div>
             </div>
 
-            <input type="submit" value="Guardar">
+            <input type="submit" value="Guardar" id="guardar">
 
         </form>
     </div>
 
     <div id="lista">
-        
-       
+
+
 
     </div>
 
