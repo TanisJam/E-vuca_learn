@@ -26,8 +26,8 @@ function listar() {
             item.innerHTML = `
             <div class="tarea-cabecera">
                 <p class="tarea-titulo">${tarea.titulo}</p>
-                <span class="material-icons tarea-importante ${tarea.esImportante ? '' : 'oculta'}"> priority_high </span>
                 <p class="tarea-tiempo"> ${tarea.tiempo}m</p>
+                <span class="material-icons tarea-importante ${tarea.esImportante ? '' : 'oculta'}"> priority_high </span>
             </div>
             <div class="tarea-cuerpo no-visible">
                 <p class="tarea-descripcion">${tarea.descripcion}</p>

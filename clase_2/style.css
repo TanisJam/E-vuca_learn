@@ -21,8 +21,14 @@ header {
     background-color: #FFF;
     max-width: 30rem;
     margin: 0rem auto 1rem auto;
-    padding: 1rem;
+    padding: 0rem 1rem 1rem 1rem;
     border-radius: 0 0 3% 3%;
+}
+
+#importante-contenedor {
+    user-select: none;
+    display: flex;
+    align-items: center;
 }
 
 #entrada form {
@@ -35,15 +41,27 @@ header {
     margin-bottom: .3rem;
 }
 
-#slider {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+#tiempo {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1rem 1rem;
+    place-items: center;
+    user-select: none;
 }
 
-#slider input {
-    margin-right: -2.5rem;
+#slider-titulo {
+    grid-column: span 4;
+    font-size: small;
+    font-style: italic;
+    font-weight: 800;
+}
+#tiempo input, #tiempo label {
+    transition: 0.2s;
+    color: #484554;
+}
+#tiempo input:hover, #tiempo label:hover {
+    color: #000;
+    text-shadow: 0px -15px 15px rgba(255, 229, 85, 0.856);
 }
 
 textarea {
@@ -89,11 +107,10 @@ textarea {
 }
 
 .tarea-cabecera {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
     padding-bottom: .2rem;
 }
 
@@ -143,6 +160,17 @@ textarea {
     padding: .2rem 1rem .1rem 1rem;
 }
 
+.tarea-expandir {
+    user-select: none;
+    cursor: pointer;
+    transition: 0.2s;
+    transform: scale(1.3);
+}
+
+.tarea-expandir:hover {
+    transform: scale(1.6);
+}
+
 #hecho, #editar, #borrar {
     color: #fff;
     font-size: 2rem;
@@ -152,6 +180,7 @@ textarea {
     background-color: #009E74;
     box-shadow: 0 0 0 4px #009E74, 4px 3px 5px 1px rgba(0, 0, 0, 0.75);
 }
+
 #hecho:active {
     box-shadow: 0 0 0 4px #009E74, 3px 2px 4px 1px rgba(0, 0, 0, 0.75);
     transform: scale(.99);
@@ -161,6 +190,7 @@ textarea {
     background-color: #5258E6;
     box-shadow: 0 0 0 4px #5258E6, 4px 3px 5px 1px rgba(0, 0, 0, 0.75);
 }
+
 #editar:active {
     box-shadow: 0 0 0 4px #5258E6, 3px 2px 4px 1px rgba(0, 0, 0, 0.75);
     transform: scale(.99);
@@ -170,6 +200,7 @@ textarea {
     background-color: #EA001F;
     box-shadow: 0 0 0 4px #EA001F, 4px 3px 5px 1px rgba(0, 0, 0, 0.75);
 }
+
 #borrar:active {
     box-shadow: 0 0 0 4px #EA001F, 3px 2px 4px 1px rgba(0, 0, 0, 0.75);
     transform: scale(.99);
@@ -198,4 +229,73 @@ textarea {
 .no-visible {
     height: 0;
     overflow: hidden;
+}
+
+/*CSS PARA EL SWITCH*/
+
+/* The switch - the box around the slider */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 31px;
+    height: 17px;
+}
+
+/* Hide default HTML checkbox */
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 2px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 3px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #D8002B;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #D8002B;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(11px);
+    -ms-transform: translateX(11px);
+    transform: translateX(11px);
+}
+
+/* Rounded sliders */
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
 }
