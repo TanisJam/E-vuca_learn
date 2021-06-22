@@ -2,56 +2,94 @@
 const Formulario = document.getElementById("formulario");
 const Listado = document.getElementById("lista");
 
-//BASE DE DATOS
 
+//BASE DE DATOS
 const DB = {
 
     tareas: JSON.parse(localStorage.getItem('tareas')) || [],
 
     agregar: function (tarea) {
-        tareas.unshift(e);
-        this.guardar;
+        let posicion;
+        this.tareas.find((tar, i) => {
+            if (tar.titulo === tarea.titulo) {
+                posicion = i;
+            }
+        })
+        console.log(posicion);
+        if (posicion != undefined) {
+            this.tareas[posicion] = tarea;
+        } else {
+            this.tareas.unshift(tarea);
+        }
+
+        this.guardar();
     },
 
-    cosultar: function () {
-        return this.tareas;
+    consultar: function (titulo) {
+        if (!titulo) {
+            return this.tareas;
+        }
+        let posicion;
+        this.tareas.find((tarea, i) => {
+            if (tarea.titulo === titulo) {
+                posicion = i;
+            }
+        })
+        return this.tareas[posicion];
     },
 
-    guardar: function(){
-        localStorage.setItem('tareas', JSON.stringify(tareas));
+    guardar: function () {
+        localStorage.setItem('tareas', JSON.stringify(this.tareas));
+    },
+
+    borrar: function (titulo) {
+        let posicion;
+        this.tareas.find((tarea, i) => {
+            if (tarea.titulo === titulo) {
+                posicion = i;
+            }
+        })
+        this.tareas.splice(posicion, 1);
+        this.guardar();
     }
 
 }
 
-console.log(DB.tareas);
 
 //FUNCIONES
 function guardar(e) {
-    let tareas = JSON.parse(localStorage.getItem('tareas'));
-    if (tareas) {
-        tareas.unshift(e);
-    } else {
-        tareas = [];
-        tareas.push(e);
+
+    let data = e.target
+
+    let esImportante = data.querySelector('#importante').checked;
+    let titulo = data.querySelector('#titulo').value;
+    let descripcion = data.querySelector('#descripcion').value;
+    let tiempo = data.querySelector('input[name="tiempo"]:checked').value;
+
+    let tarea = { esImportante, titulo, descripcion, tiempo }
+
+    DB.agregar(tarea);
+    data.reset();
+    listar();
+
+    if (document.querySelector("#editando")){
+        document.querySelector("#editando").remove();
     }
-    localStorage.setItem('tareas', JSON.stringify(tareas));
 }
 
 function listar() {
-    let tareas = JSON.parse(localStorage.getItem('tareas'));
-    if (tareas) {
-        Listado.innerHTML = "";
-
-        tareas.forEach(element => {
-            let tarea = crearTarea(element);
-            Listado.appendChild(tarea);
-        });
-    }
+    let tareas = DB.consultar();
+    Listado.innerHTML = "";
+    tareas.forEach(element => {
+        let tarea = crearTarea(element);
+        Listado.appendChild(tarea);
+    });
 }
 
 function crearTarea(tarea) {
     let tareaDiv = document.createElement("div");
     tareaDiv.setAttribute("class", "tarea");
+    tareaDiv.setAttribute("id", tarea.titulo)
 
     let tareaCabecera = document.createElement("div");
     tareaCabecera.setAttribute("class", "tarea-cabecera");
@@ -86,13 +124,16 @@ function crearTarea(tarea) {
 
     let tareaBotones = document.createElement("div");
     tareaBotones.setAttribute("class", "tarea-botones");
+
     let hecho = document.createElement("span");
     hecho.setAttribute("class", "material-icons boton hecho");
+    hecho.setAttribute("onclick", "hecho(this)");
     hecho.innerText = "check";
     tareaBotones.appendChild(hecho);
 
     let editar = document.createElement("span");
     editar.setAttribute("class", "material-icons boton editar");
+    editar.setAttribute("onclick", "editar(this)");
     editar.innerText = "edit";
     tareaBotones.appendChild(editar);
 
@@ -117,23 +158,54 @@ function crearTarea(tarea) {
 }
 
 function borrar(e) {
-    let tituloTarea = e.parentElement
+
+    let titulo = e.parentElement
         .parentElement
         .parentElement
         .querySelector(".tarea-titulo")
         .innerText;
 
-    let tareas = JSON.parse(localStorage.getItem('tareas'));
+    DB.borrar(titulo)
 
-    let posicion = tareas.find((tarea, i) => {
-        if (tarea.titulo === tituloTarea) {
-            return i;
-        }
-    })
-
-    tareas.splice(posicion, 1);
-    localStorage.setItem('tareas', JSON.stringify(tareas));
     listar();
+
+}
+
+function editar(e) {
+    let titulo = e.parentElement
+        .parentElement
+        .parentElement
+        .querySelector(".tarea-titulo")
+        .innerText;
+
+    let tarea = DB.consultar(titulo);
+
+    let editando = document.createElement("p");
+    editando.setAttribute("id", "editando");
+    editando.innerText = "EDITANDO";
+
+
+    let edImportante = Formulario.querySelector('#importante');
+    let edTitulo = Formulario.querySelector('#titulo');
+    let edDescripcion = Formulario.querySelector('#descripcion');
+    let edTiempo = Formulario.querySelector(`#t${tarea.tiempo}`);
+
+    edImportante.checked = tarea.esImportante;
+    edTitulo.value = tarea.titulo;
+    edDescripcion.value = tarea.descripcion;
+    edTiempo.checked = true;
+
+    edImportante.parentElement.parentElement.appendChild(editando);
+}
+
+function hecho(e) {
+    let titulo = e.parentElement
+        .parentElement
+        .parentElement
+        .querySelector(".tarea-titulo")
+        .innerText;
+
+    console.log("Hecho", titulo);
 
 }
 
@@ -161,21 +233,5 @@ window.onload = listar;
 Formulario.addEventListener('submit', e => {
     e.preventDefault();
 
-    let data = e.target
-
-    let esImportante = data.querySelector('#importante').checked;
-    let titulo = data.querySelector('#titulo').value;
-    let descripcion = data.querySelector('#descripcion').value;
-    let tiempo = data.querySelector('input[name="tiempo"]:checked').value;
-
-    let tarea = {
-        esImportante,
-        titulo,
-        descripcion,
-        tiempo
-    }
-
-    guardar(tarea);
-    data.reset();
-    listar();
+    guardar(e);
 })

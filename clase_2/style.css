@@ -31,6 +31,13 @@ header {
     align-items: center;
 }
 
+#editando {
+    color: #D8002B;
+    margin: 1px auto 1px auto;
+    font-size: x-large;
+    font-style: oblique;
+}
+
 #entrada form {
     display: flex;
     flex-direction: column;
