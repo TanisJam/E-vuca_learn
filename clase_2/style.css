@@ -171,37 +171,37 @@ textarea {
     transform: scale(1.6);
 }
 
-#hecho, #editar, #borrar {
+.hecho, .editar, .borrar {
     color: #fff;
     font-size: 2rem;
 }
 
-#hecho {
+.hecho {
     background-color: #009E74;
     box-shadow: 0 0 0 4px #009E74, 4px 3px 5px 1px rgba(0, 0, 0, 0.75);
 }
 
-#hecho:active {
+.hecho:active {
     box-shadow: 0 0 0 4px #009E74, 3px 2px 4px 1px rgba(0, 0, 0, 0.75);
     transform: scale(.99);
 }
 
-#editar {
+.editar {
     background-color: #5258E6;
     box-shadow: 0 0 0 4px #5258E6, 4px 3px 5px 1px rgba(0, 0, 0, 0.75);
 }
 
-#editar:active {
+.editar:active {
     box-shadow: 0 0 0 4px #5258E6, 3px 2px 4px 1px rgba(0, 0, 0, 0.75);
     transform: scale(.99);
 }
 
-#borrar {
+.borrar {
     background-color: #EA001F;
     box-shadow: 0 0 0 4px #EA001F, 4px 3px 5px 1px rgba(0, 0, 0, 0.75);
 }
 
-#borrar:active {
+.borrar:active {
     box-shadow: 0 0 0 4px #EA001F, 3px 2px 4px 1px rgba(0, 0, 0, 0.75);
     transform: scale(.99);
 }
