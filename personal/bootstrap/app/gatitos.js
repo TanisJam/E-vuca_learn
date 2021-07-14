@@ -1,6 +1,18 @@
 //GOLBAL VARIABLES
 const main = document.getElementById('main');
 
+//Masonry
+
+window.onload = () => {
+    const grid = document.querySelector('.grid');
+
+    const masonry = new Masonry(grid, {
+        itemSelector: '.grid-item',
+    });
+
+    console.log('mason', masonry);
+
+}
 
 
 //Getting users data
@@ -31,16 +43,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 //FUNCTIONS
 function createUser(cat) {
-    let card = document.createElement('div');
-    card.setAttribute("class", "card sm m-2");
-    card.setAttribute('style', 'width: 18rem;');
+    let container = document.createElement('div');
+    container.setAttribute('class', 'grid-item')
 
     let img = document.createElement('img');
     img.setAttribute('src', `${cat.url}`);
-    img.setAttribute('class', 'card-img-top');
-    card.appendChild(img);
+    img.setAttribute('class', 'm-1');
+    container.appendChild(img);
 
-
-
-    return card;
+    return container;
 }
